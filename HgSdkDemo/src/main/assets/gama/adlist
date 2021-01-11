@@ -1,0 +1,129 @@
+{
+    "events": [
+        {
+            "id": 428027033,
+            "name": "gamesword_10min",
+            "token": ""
+        },
+        {
+            "id": 1441688998,
+            "name": "gamesword_15retention",
+            "token": ""
+        },
+        {
+            "id": 1146122737,
+            "name": "gamesword_1retention",
+            "token": ""
+        },
+        {
+            "id": 1502386958,
+            "name": "gamesword_20min",
+            "token": ""
+        },
+        {
+            "id": 2102020743,
+            "name": "gamesword_30min",
+            "token": ""
+        },
+        {
+            "id": 1477064003,
+            "name": "gamesword_30retention",
+            "token": ""
+        },
+        {
+            "id": 1644213435,
+            "name": "gamesword_3retention",
+            "token": ""
+        },
+        {
+            "id": 1916085957,
+            "name": "gamesword_7retention",
+            "token": ""
+        },
+        {
+            "id": 1850803452,
+            "name": "gamesword_8min",
+            "token": ""
+        },
+        {
+            "id": 1939142726,
+            "name": "gamesword_attendbattle1",
+            "token": ""
+        },
+        {
+            "id": 1540226642,
+            "name": "gamesword_attendbattle10",
+            "token": ""
+        },
+        {
+            "id": 1641510414,
+            "name": "gamesword_attendbattle2",
+            "token": ""
+        },
+        {
+            "id": 1281978694,
+            "name": "gamesword_attendbattle3",
+            "token": ""
+        },
+        {
+            "id": 1791434948,
+            "name": "gamesword_attendbattle4",
+            "token": ""
+        },
+        {
+            "id": 418535113,
+            "name": "gamesword_clicktopay",
+            "token": ""
+        },
+        {
+            "id": 497968902,
+            "name": "gamesword_firstpay",
+            "token": ""
+        },
+        {
+            "id": 1889531354,
+            "name": "gamesword_login_event",
+            "token": ""
+        },
+        {
+            "id": 1534635202,
+            "name": "gamesword_onlevel1",
+            "token": ""
+        },
+        {
+            "id": 677398248,
+            "name": "gamesword_onlevel10",
+            "token": ""
+        },
+        {
+            "id": 1583957493,
+            "name": "gamesword_open",
+            "token": ""
+        },
+        {
+            "id": 786263766,
+            "name": "gamesword_openmall",
+            "token": ""
+        },
+        {
+            "id": 1474209759,
+            "name": "gamesword_register_event",
+            "token": ""
+        },
+        {
+            "id": 773842207,
+            "name": "gamesword_role_info",
+            "token": ""
+        },
+        {
+            "id": 950850672,
+            "name": "in_app_purchases",
+            "token": ""
+        },
+        {
+            "id": 0,
+            "name": "General Revenue",
+            "token": ""
+        }
+    ]
+}

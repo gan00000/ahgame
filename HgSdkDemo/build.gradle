@@ -1,0 +1,159 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.crashlytics'
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips之类的.so会被过滤掉)
+        }
+
+//        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            //定义一个文件
+//            outputFileName = "${variant.name}-${variant.versionName}.apk"
+//            def outputFile = output.outputFile
+            //定义存储apk的位置和文件名，这里文件名格式定义为 [applicationId_版本号_ReleaseTime_apk]
+            if (outputFileName != null && outputFileName.contains("release") && outputFileName.endsWith('.apk')) {
+
+                outputFileName = "${variant.applicationId}_${variant.versionCode}_${variant.versionName}_${getReleaseTime()}_release.apk"
+
+            } else if (outputFile != null && outputFile.name.contains("debug") && outputFile.name.endsWith('.apk')) {
+
+                outputFileName = "${variant.applicationId}_${variant.versionCode}_${variant.versionName}_${getReleaseTime()}_debug.apk"
+            }
+        }
+    }
+
+    signingConfigs {//签名的配置
+        release {
+            storeFile file('../signkey/hgame_android.key') //正式签名，以后使用
+            storePassword 'hgame9900'
+            keyAlias 'hgame'
+            keyPassword 'hgame9900'
+        }
+        debug {
+            storeFile file('../signkey/hgame_android.key') //正式签名，以后使用
+            storePassword 'hgame9900'
+            keyAlias 'hgame'
+            keyPassword 'hgame9900'
+        }
+    }
+
+    buildTypes {
+        release {
+//            multiDexEnabled true //Add this
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+        }
+    }
+    productFlavors {
+
+        sxh {
+            applicationId "com.hgame.sxh"
+            minSdkVersion rootProject.minSdkVersion
+            targetSdkVersion rootProject.targetSdkVersion
+            versionCode 1
+            versionName "1.0"
+            flavorDimensions "1"
+            resValue "string", "scheme", "sxh"
+            resValue "string", "facebook_app_id", "431036224947775"
+            resValue "string", "facebook_authorities", "com.facebook.app.FacebookContentProvider431036224947775"
+            resValue "string", "fb_login_protocol_scheme", "fb431036224947775"
+            resValue "string", "facebook_app_name", "三肖H"
+            //每个游戏的demo设置
+            resValue "string", "test_sku", "com.gamesword.gotgl.1usd"
+            resValue "string", "sdk_name", "三肖H"
+            signingConfig signingConfigs.release
+
+            buildConfigField "String[]", "PRODUCE_LIST",
+                    "{" +
+                            "\"com.gamesword.gotgl.1usd\"," +
+                            "\"com.ezfy.100usd\"," +
+                            "}"
+        }
+
+    }
+
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs', '../HgSdkDemo/libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: 'GamaSDK-HGameSdk-release', ext: 'aar')
+
+    api ('com.github.bumptech.glide:glide:4.11.0')
+
+    //Google
+    api 'com.google.android.gms:play-services-auth:19.0.0'
+    api 'com.google.android.gms:play-services-base:17.5.0'
+    api 'com.google.android.gms:play-services-games:21.0.0'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
+    // Recommended: Add the Firebase SDK for Google Analytics.
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    api 'com.google.firebase:firebase-core:18.0.0'
+    api 'com.google.firebase:firebase-messaging:21.0.1'
+    //crashlytics
+    api 'com.google.firebase:firebase-crashlytics:17.3.0'
+
+
+    api 'com.android.installreferrer:installreferrer:2.2'
+    //google volley
+    api 'com.android.volley:volley:1.1.1'
+
+    //Facebook库
+    api 'com.facebook.android:facebook-login:7.1.0'
+    api 'com.facebook.android:facebook-share:7.1.0'
+    api 'com.facebook.android:facebook-messenger:7.1.0'
+
+    //androidx
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.browser:browser:1.3.0'
+    api 'com.google.code.gson:gson:2.8.6'
+
+    //adjust
+    api 'com.adjust.sdk:adjust-android:4.21.1'
+    //af
+    implementation 'com.appsflyer:af-android-sdk:6.0.0'
+}
+
+
+def getReleaseTime() {
+    return new Date().format("yyyy-MM-dd-HH-mm", TimeZone.getDefault())
+}
+
+
+apply plugin: 'com.google.gms.google-services'
