@@ -77,15 +77,27 @@ android {
             resValue "string", "fb_login_protocol_scheme", "fb431036224947775"
             resValue "string", "facebook_app_name", "三肖H"
             //每个游戏的demo设置
-            resValue "string", "test_sku", "com.gamesword.gotgl.1usd"
             resValue "string", "sdk_name", "三肖H"
             signingConfig signingConfigs.release
 
-            buildConfigField "String[]", "PRODUCE_LIST",
-                    "{" +
-                            "\"com.gamesword.gotgl.1usd\"," +
-                            "\"com.ezfy.100usd\"," +
-                            "}"
+        }
+
+        gds {//宫斗
+            applicationId "com.hgame.gds"
+            minSdkVersion rootProject.minSdkVersion
+            targetSdkVersion rootProject.targetSdkVersion
+            versionCode 1
+            versionName "1.0"
+            flavorDimensions "1"
+            resValue "string", "scheme", "gds"
+            resValue "string", "facebook_app_id", "180588550427901"
+            resValue "string", "facebook_authorities", "com.facebook.app.FacebookContentProvider180588550427901"
+            resValue "string", "fb_login_protocol_scheme", "fb180588550427901"
+            resValue "string", "facebook_app_name", "宫斗"
+            //每个游戏的demo设置
+            resValue "string", "sdk_name", "宫斗demo"
+            signingConfig signingConfigs.release
+
         }
 
     }
